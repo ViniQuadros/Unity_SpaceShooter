@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
     public GameObject deathPanel;
     public TextMeshProUGUI finalScore;
 
+    public string GetCurrentScene()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
     public void ShowResults()
     {
         deathPanel.SetActive(true);
@@ -17,6 +22,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

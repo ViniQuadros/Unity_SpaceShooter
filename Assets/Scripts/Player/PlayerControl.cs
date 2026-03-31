@@ -1,6 +1,5 @@
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -9,10 +8,33 @@ public class PlayerControl : MonoBehaviour
     public GameManager gameManager;
 
     private bool isInstaKillActive = false;
+    private string currentScene;
+
+    private enum PlayerMode
+    {
+        Classic,
+        Roguelike
+    }
+    private PlayerMode currentMode;
+
+    private enum PlayerState
+    {
+        Idle,
+        Moving,
+        Shooting,
+        Dead
+    }
+    private PlayerState currentState = PlayerState.Idle;
+
+    private void Start()
+    {
+        currentScene = gameManager.GetCurrentScene();
+        currentMode = currentScene == "Classic Mode" ? PlayerMode.Classic : PlayerMode.Roguelike;
+    }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown((int) MouseButton.Left))
+        if (Input.GetMouseButtonDown((int) MouseButton.Left) && currentState != PlayerState.Dead)
         {
             Instantiate(laserBean, firePoint.position, firePoint.rotation);
             AudioManager.audioManagerInstance.PlayLaserShoot();
@@ -29,8 +51,9 @@ public class PlayerControl : MonoBehaviour
 
     public void Die()
     {
+        currentState = PlayerState.Dead;
         gameManager.ShowResults();
-        Destroy(gameObject);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void ActivateInstaKill(bool activate)
