@@ -1,22 +1,16 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject deathPanel;
-    public TextMeshProUGUI finalScore;
-
     public string GetCurrentScene()
     {
         return SceneManager.GetActiveScene().name;
     }
 
-    public void ShowResults()
+    public virtual void ShowResults()
     {
-        deathPanel.SetActive(true);
-        finalScore.text = "Your Score: " + ScoreManager.scoreManagerInstance.GetScore().ToString();
-        Time.timeScale = 0f;
+        Debug.Log("Game Over!");
     }
 
     public void RestartGame()
