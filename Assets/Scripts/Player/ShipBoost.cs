@@ -30,7 +30,10 @@ public class ShipBoost : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && isBoosting)
         {
-            boostSlider.value -= reduceRate * Time.deltaTime;
+            if (boostSlider.value > 0)
+            {
+                boostSlider.value -= reduceRate * Time.deltaTime;
+            }
 
             //Visual feedback for boost level
             if (boostSlider.value <= 0.5 && boostSlider.value > 0.2)
