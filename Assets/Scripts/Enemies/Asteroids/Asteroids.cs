@@ -3,24 +3,29 @@ using UnityEngine;
 
 public class Asteroids : MonoBehaviour
 {
+    [Header("Speed Config")]
     public float minSpeed = 1.0f;
     public float maxSpeed = 4.0f;
-    public int scoreValue = 10;
+
+    [Header("Scale Config")]
     public float minScale = 0.6f;
     public float maxScale = 1.5f;
 
-    private float health = 10f;
-    private bool isDead = false;
     private Rigidbody2D rb;
-
     private SpriteRenderer spriteRenderer;
     private Collider2D boxCollider;
+    private Color damageColor;
+    private float health = 10f;
+    private bool isDead = false;
+
+    private int scoreValue = 10; //For classic mode
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        //Apply random speed and scale to the asteroid
         float speed = Random.Range(minSpeed, maxSpeed + 1);
         rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
 
@@ -37,18 +42,27 @@ public class Asteroids : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isCriticalDamage)
     {
         if (isDead)
             return;
 
         health -= damage;
+
+        if (isCriticalDamage)
+            damageColor = Color.darkViolet;
+        else
+            damageColor = Color.red;
+
         StartCoroutine(FlashRed());
 
         if (health <= 0f)
         {
             isDead = true;
-            ScoreManager.scoreManagerInstance.AddScore(scoreValue);
+
+            if (RoguelikeGameManager.Instance.GetCurrentScene() == "Classic Mode")
+                ScoreManager.scoreManagerInstance.AddScore(scoreValue);
+            
             StartCoroutine(Die());
         }
     }

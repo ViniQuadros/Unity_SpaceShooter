@@ -1,18 +1,21 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    public PlayerStats playerStats;
+
     [Header("Laser Settings")]
-    [SerializeField] private GameObject laserBean;
+    public GameObject laserBean;
     public Transform firePoint;
 
-    [Header("Movement Settings")]
-    public float moveSpeed = 5f;
-
     private GameManager gameManager;
-    private bool isInstaKillActive = false;
     private string currentScene;
+
+    private bool isInstaKillActive = false;
+    private float bonusMovementSpeed = 0f;
+    private float reducedFireRate = 0f;
 
     private enum PlayerMode
     {
@@ -39,10 +42,14 @@ public class PlayerControl : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown((int) MouseButton.Left) && currentState != PlayerState.Dead)
+        if (Input.GetMouseButtonDown((int) MouseButton.Left))
         {
-            Instantiate(laserBean, firePoint.position, firePoint.rotation);
-            AudioManager.audioManagerInstance.PlayLaserShoot();
+            if (currentState != PlayerState.Dead && currentState == PlayerState.Idle)
+            {
+                Instantiate(laserBean, firePoint.position, firePoint.rotation);
+                AudioManager.audioManagerInstance.PlayLaserShoot();
+                StartCoroutine(ControlFireRate());
+            }
         }
 
         if (currentMode == PlayerMode.Roguelike)
@@ -50,7 +57,8 @@ public class PlayerControl : MonoBehaviour
             float moveX = Input.GetAxis("Horizontal");
             float moveY = Input.GetAxis("Vertical");
 
-            Vector3 move = new Vector3(moveX, moveY, 0f) * moveSpeed * Time.deltaTime;
+            float finalMovementSpeed = playerStats.baseMovementSpeed + bonusMovementSpeed;
+            Vector3 move = new Vector3(moveX, moveY, 0f) * finalMovementSpeed * Time.deltaTime;
 
             transform.Translate(move);
         }
@@ -80,5 +88,13 @@ public class PlayerControl : MonoBehaviour
     public bool IsInstaKillActive()
     {
         return isInstaKillActive;
+    }
+
+    private IEnumerator ControlFireRate()
+    {
+        currentState = PlayerState.Shooting;
+        float finalFireRate = playerStats.baseFireRate - reducedFireRate;
+        yield return new WaitForSeconds(finalFireRate);
+        currentState = PlayerState.Idle;
     }
 }

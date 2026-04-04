@@ -6,17 +6,19 @@ public class LaserBean : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerControl playerControl;
 
-    public float speed = 20f;
-    public float damage = 1f;
-    public float critDamage = 3f;
-    public float critChance = 10f;
+    public PlayerStats playerStats;
+
+    private float bonusDamage = 0f;
+    private float bonusSpeed = 0f;
+    private float bonusCritChance = 0f;
+    private float bonusCritDamage = 0f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
 
-        rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+        rb.AddForce(transform.up * (playerStats.baseProjectileSpeed + bonusSpeed), ForceMode2D.Impulse);
         Invoke(nameof(DestroyBean), 5f);
     }
 
@@ -24,27 +26,29 @@ public class LaserBean : MonoBehaviour
     {
         if (playerControl.IsInstaKillActive())
         {
-            damage = 1000f;
-        }
-
-        if (other.CompareTag("Asteroid"))
-        {
-            float rand = Random.Range(0f, 100f);
-            if (rand <= critChance)
-            {
-                other.GetComponent<Asteroids>().TakeDamage(critDamage);
-            }
-            else
-            {
-                other.GetComponent<Asteroids>().TakeDamage(damage);
-            }
-            DestroyBean();
+            playerStats.baseDamage = 1000f;
         }
 
         if (other.CompareTag("PowerUp"))
         {
             other.GetComponent<PowerUpClass>().ApplyPowerUp();
             other.GetComponent<SpriteRenderer>().enabled = false;
+            DestroyBean();
+        }
+
+        if (other.CompareTag("Asteroid"))
+        {
+            float rand = Random.Range(0f, 100f);
+            if (rand <= playerStats.baseCritChance + bonusCritChance)
+            {
+                float totalCritDamage = playerStats.baseCritDamage + bonusCritDamage;
+                other.GetComponent<Asteroids>().TakeDamage(totalCritDamage, true);
+            }
+            else
+            {
+                float totalDamage = playerStats.baseDamage + bonusDamage;
+                other.GetComponent<Asteroids>().TakeDamage(totalDamage, false);
+            }
             DestroyBean();
         }
     }
