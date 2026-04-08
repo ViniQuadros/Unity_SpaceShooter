@@ -62,6 +62,12 @@ public class Asteroids : MonoBehaviour
 
             if (RoguelikeGameManager.Instance.GetCurrentScene() == "Classic Mode")
                 ScoreManager.scoreManagerInstance.AddScore(scoreValue);
+
+            if (RoguelikeGameManager.Instance.GetCurrentScene() == "Roguelike Mode")
+            {
+                GiveExpToPlayer exp = GetComponent<GiveExpToPlayer>();
+                exp.GiveExp();
+            }
             
             StartCoroutine(Die());
         }

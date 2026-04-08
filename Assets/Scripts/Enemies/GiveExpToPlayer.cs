@@ -6,7 +6,7 @@ public class GiveExpToPlayer : MonoBehaviour
     public int minExp = 10;
     public int maxExp = 20;
 
-    private void OnDestroy()
+    public void GiveExp()
     {
         int expToGive = Random.Range(minExp, maxExp + 1);
         PlayerExperience playerExp = FindFirstObjectByType<PlayerExperience>();

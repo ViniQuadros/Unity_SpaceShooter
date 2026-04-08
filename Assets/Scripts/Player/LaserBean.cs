@@ -57,4 +57,9 @@ public class LaserBean : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public void SetBonusDamage(float value) => bonusDamage = Mathf.Max(0f, value);
+    public void SetBonusSpeed(float value) => bonusSpeed = Mathf.Max(0f, value);
+    public void SetBonusCritChance(float value) => bonusCritChance = Mathf.Clamp(value, 0f, 100f);
+    public void SetBonusCritDamage(float value) => bonusCritDamage = Mathf.Max(0f, value);
 }

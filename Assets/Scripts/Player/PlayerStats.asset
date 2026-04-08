@@ -15,7 +15,7 @@ MonoBehaviour:
   baseMovementSpeed: 5
   baseMaxHealth: 100
   baseFireRate: 0.5
-  baseProjectileSpeed: 5
+  baseProjectileSpeed: 20
   baseDamage: 2
   baseCritDamage: 10
   baseCritChance: 10

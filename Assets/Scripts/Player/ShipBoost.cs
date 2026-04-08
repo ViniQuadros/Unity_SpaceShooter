@@ -3,11 +3,15 @@ using UnityEngine.UI;
 
 public class ShipBoost : MonoBehaviour
 {
+    [Header("Slider Infos")]
     public Slider boostSlider;
     public Image fillImage;
-    public float boostForce = 10f;
+    public float boostForce = 5f;
 
-    private float reduceRate = 0.05f;
+    [Header("Boost Animation")]
+    public SpriteRenderer boostSprite;
+
+    private float reduceRate = 0.3f;
     private float increaseRate = 0.1f;
     private bool isBoosting = false;
     private Rigidbody2D rb;
@@ -17,6 +21,7 @@ public class ShipBoost : MonoBehaviour
         boostSlider.maxValue = 1f;
         boostSlider.value = 1f;
         fillImage.color = Color.blue; // Initial color for full boost
+        boostSprite.enabled = false;
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -26,6 +31,7 @@ public class ShipBoost : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             isBoosting = true;
+            boostSprite.enabled = true; // Show boost animation
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && isBoosting)
@@ -51,6 +57,7 @@ public class ShipBoost : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             isBoosting = false;
+            boostSprite.enabled = false; // Hide boost animation
         }
 
         if (!isBoosting)
