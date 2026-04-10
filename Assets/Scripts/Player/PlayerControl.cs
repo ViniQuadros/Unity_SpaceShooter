@@ -97,4 +97,9 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(finalFireRate);
         currentState = PlayerState.Idle;
     }
+
+    public void ReduceFireRate(float value)
+    {
+        reducedFireRate = Mathf.Max(0f, reducedFireRate + value);
+    }
 }

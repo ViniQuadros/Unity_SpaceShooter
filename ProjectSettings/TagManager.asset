@@ -9,6 +9,7 @@ TagManager:
   - PowerUp
   - PowerUpManager
   - GameManager
+  - UpgradesManager
   layers:
   - Default
   - TransparentFX

@@ -4,13 +4,15 @@ using UnityEngine.UI;
 
 public class PlayerExperience : MonoBehaviour
 {
+    public UpgradesManager upgradesManager;
+
     [Header("Exp UI")]
     public Slider expSlider;
     public TextMeshProUGUI playerLevel;
-    public GameObject upgradeCanvas;
 
-    private int currentExp = 0;
-    private int expToNextLevel = 200;
+    private float currentExp = 0;
+    private float expToNextLevel = 200;
+    private float expMultiplier = 1f;
     private int currentPlayerLevel = 1;
 
     void Start()
@@ -20,9 +22,9 @@ public class PlayerExperience : MonoBehaviour
         playerLevel.text = currentPlayerLevel.ToString();
     }
 
-    public void AddExperience(int amount)
+    public void AddExperience(float amount)
     {
-        currentExp += amount;
+        currentExp += (amount * expMultiplier);
         expSlider.value = currentExp;
         if (currentExp >= expToNextLevel)
         {
@@ -38,12 +40,11 @@ public class PlayerExperience : MonoBehaviour
         currentExp = 0;
         expSlider.value = currentExp;
 
-        UpgradeChoice();
+        //upgradesManager.ShowPossibleUpgrades();
     }
 
-    private void UpgradeChoice()
+    public void IncreaseExpMultiplier(float multiplier)
     {
-        Time.timeScale = 0f; // Pause the game
-        upgradeCanvas.SetActive(true);
+        expMultiplier += multiplier;
     }
 }

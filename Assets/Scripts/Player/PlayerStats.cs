@@ -7,7 +7,7 @@ public class PlayerStats : ScriptableObject
     public float baseMovementSpeed;
 
     [Header("Health Stats")]
-    public int baseMaxHealth;
+    public float baseMaxHealth;
 
     [Header("Combat Stats")]
     public float baseFireRate;

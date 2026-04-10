@@ -591,8 +591,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChunkManager
   chunkSize: 50
   viewDistance: 2
-  minPlanetsPerChunk: 1
-  maxPlanetsPerChunk: 10
+  minPlanetsPerChunk: 5
+  maxPlanetsPerChunk: 20
 --- !u!4 &310713826
 Transform:
   m_ObjectHideFlags: 0
@@ -770,15 +770,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1f3546ec5141dd5468b52c4a1fa253b4, type: 2}
+  m_sharedMaterial: {fileID: -2074487984392325381, guid: 1f3546ec5141dd5468b52c4a1fa253b4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4290361785
+  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -795,10 +795,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -907,15 +907,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1f3546ec5141dd5468b52c4a1fa253b4, type: 2}
+  m_sharedMaterial: {fileID: -2074487984392325381, guid: 1f3546ec5141dd5468b52c4a1fa253b4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4290361785
+  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -932,10 +932,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1065,8 +1065,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 360, y: -113.486}
-  m_SizeDelta: {x: 690, y: 200}
+  m_AnchoredPosition: {x: 360.0001, y: -113.27256}
+  m_SizeDelta: {x: 690.0001, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510023216
 MonoBehaviour:
@@ -1132,11 +1132,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 4881573319249508391, guid: b2bb5ce6c2ac3b84884ef833339e6113, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 2
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1209,8 +1209,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Select an upgrade:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 13ec7a6fad6160640a3406ca21bc91a3, type: 2}
+  m_sharedMaterial: {fileID: -1925517102704038268, guid: 13ec7a6fad6160640a3406ca21bc91a3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1234,8 +1234,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 65
+  m_fontSizeBase: 65
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1412,6 +1412,10 @@ PrefabInstance:
       propertyPath: upgradeCanvas
       value: 
       objectReference: {fileID: 1694342797}
+    - target: {fileID: 4527456395049760739, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
+      propertyPath: upgradesManager
+      value: 
+      objectReference: {fileID: 1141364972}
     - target: {fileID: 7889027597517469572, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
       propertyPath: m_Name
       value: Roguelike_SpaceShip_Player
@@ -2055,7 +2059,7 @@ GameObject:
   - component: {fileID: 1141364972}
   m_Layer: 0
   m_Name: UpgradesManager
-  m_TagString: Untagged
+  m_TagString: UpgradesManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2087,6 +2091,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097e0896a16b83742ab12116fcb2ad95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradesManager
+  possibleUpgrades:
+  - {fileID: 11400000, guid: c0fa12824366d2d4ea0e1cf257a22a3b, type: 2}
+  - {fileID: 11400000, guid: 0ad808f7641143b48a6be554561e8491, type: 2}
+  - {fileID: 11400000, guid: 7340f4e71f936ac44a1cf68027215281, type: 2}
+  - {fileID: 11400000, guid: 88c8c7ff050aaa94aa072f3bb19c8ddc, type: 2}
+  upgradeCanvas: {fileID: 1694342797}
+  upgradeButtons:
+  - {fileID: 510023216}
+  - {fileID: 1394532720}
+  - {fileID: 1477148064}
+  upgradeTexts:
+  - {fileID: 486682527}
+  - {fileID: 466061487}
+  - {fileID: 2145789576}
 --- !u!1 &1150232517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,8 +2493,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 360, y: -340.458}
-  m_SizeDelta: {x: 690, y: 200}
+  m_AnchoredPosition: {x: 360.0001, y: -339.8177}
+  m_SizeDelta: {x: 690.0001, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1394532720
 MonoBehaviour:
@@ -2542,8 +2560,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 4881573319249508391, guid: b2bb5ce6c2ac3b84884ef833339e6113, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2769,8 +2787,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 360, y: -567.43}
-  m_SizeDelta: {x: 690, y: 200}
+  m_AnchoredPosition: {x: 360.0001, y: -566.3628}
+  m_SizeDelta: {x: 690.0001, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1477148064
 MonoBehaviour:
@@ -2836,8 +2854,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 4881573319249508391, guid: b2bb5ce6c2ac3b84884ef833339e6113, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3046,8 +3064,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694342797}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -90}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3449,15 +3467,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1f3546ec5141dd5468b52c4a1fa253b4, type: 2}
+  m_sharedMaterial: {fileID: -2074487984392325381, guid: 1f3546ec5141dd5468b52c4a1fa253b4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4290361785
+  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3474,10 +3492,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

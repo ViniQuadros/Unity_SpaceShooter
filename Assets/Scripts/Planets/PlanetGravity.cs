@@ -11,7 +11,6 @@ public class PlanetGravity : MonoBehaviour
         gravityArea = GetComponent<CapsuleCollider2D>();
 
         gravityStrength = gravityArea.size.x * Random.Range(2, 3);
-        Debug.Log(gameObject.name + " " + transform.localScale.magnitude);
     }
 
     void FixedUpdate()

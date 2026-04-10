@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bda17a50d126545b70eb4c833608cf, type: 3}
+  m_Name: Crit Damage Upgrade
+  m_EditorClassIdentifier: Assembly-CSharp::CritDamageUpgrade
+  description: Increase the critical damage by {modifierValue}
+  modifierValue: 0
+  laserBean: {fileID: 7244774468152731799, guid: 19547e8d093e1234a83729c14edeb7e8, type: 3}

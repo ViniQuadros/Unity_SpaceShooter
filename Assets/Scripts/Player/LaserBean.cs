@@ -22,6 +22,11 @@ public class LaserBean : MonoBehaviour
         Invoke(nameof(DestroyBean), 5f);
     }
 
+    void Update()
+    {
+        Debug.Log($"Damage: {playerStats.baseDamage + bonusDamage}, Speed: {playerStats.baseProjectileSpeed + bonusSpeed}, Crit Chance: {playerStats.baseCritChance + bonusCritChance}%, Crit Damage: {playerStats.baseCritDamage + bonusCritDamage}");
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (playerControl.IsInstaKillActive())

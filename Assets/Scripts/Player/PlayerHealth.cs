@@ -6,8 +6,8 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;
     public PlayerStats playerStats;
 
-    private int currentHealth;
-    private int bonusMaxHealth = 0;
+    private float currentHealth;
+    private float bonusMaxHealth = 0;
 
     private void Awake()
     {
@@ -29,13 +29,16 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, playerStats.baseMaxHealth + bonusMaxHealth); // Ensure health doesn't exceed max
+        // Ensure health doesn't exceed max
+        currentHealth = Mathf.Clamp(currentHealth, 0, playerStats.baseMaxHealth + bonusMaxHealth); 
         healthSlider.value = currentHealth;
     }
 
-    public void IncreaseMaxHealth(int amount)
+    public void IncreaseMaxHealth(float modifier)
     {
-        bonusMaxHealth += amount;
+        float totalMaxHealth = playerStats.baseMaxHealth + bonusMaxHealth;
+        bonusMaxHealth += (totalMaxHealth * modifier);
         healthSlider.maxValue = playerStats.baseMaxHealth + bonusMaxHealth;
+        healthSlider.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, totalMaxHealth); // Adjust the width of the health bar based on the new max health
     }
 }

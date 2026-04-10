@@ -74,4 +74,9 @@ public class ShipBoost : MonoBehaviour
             }
         }
     }
+
+    public void ReduceConsumption(float modifier)
+    {
+        reduceRate = reduceRate * (1 - modifier);
+    }
 }
