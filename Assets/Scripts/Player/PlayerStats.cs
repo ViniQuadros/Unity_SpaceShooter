@@ -17,4 +17,18 @@ public class PlayerStats : ScriptableObject
     public float baseDamage;
     public float baseCritDamage;
     public float baseCritChance;
+
+    public enum PlayerMode
+    {
+        Classic,
+        Roguelike
+    }
+
+    public enum PlayerState
+    {
+        Idle,
+        Moving,
+        Shooting,
+        Dead
+    }
 }

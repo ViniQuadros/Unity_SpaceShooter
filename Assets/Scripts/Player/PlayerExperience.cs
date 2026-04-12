@@ -40,7 +40,7 @@ public class PlayerExperience : MonoBehaviour
         currentExp = 0;
         expSlider.value = currentExp;
 
-        //upgradesManager.ShowPossibleUpgrades();
+        upgradesManager.ShowPossibleUpgrades();
     }
 
     public void IncreaseExpMultiplier(float multiplier)

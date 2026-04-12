@@ -17,34 +17,21 @@ public class PlayerControl : MonoBehaviour
     private float bonusMovementSpeed = 0f;
     private float reducedFireRate = 0f;
 
-    private enum PlayerMode
-    {
-        Classic,
-        Roguelike
-    }
-    private PlayerMode currentMode;
-
-    private enum PlayerState
-    {
-        Idle,
-        Moving,
-        Shooting,
-        Dead
-    }
-    private PlayerState currentState = PlayerState.Idle;
+    private PlayerStats.PlayerMode currentMode;
+    private PlayerStats.PlayerState currentState = PlayerStats.PlayerState.Idle;
 
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         currentScene = gameManager.GetCurrentScene();
-        currentMode = currentScene == "Classic Mode" ? PlayerMode.Classic : PlayerMode.Roguelike;
+        currentMode = currentScene == "Classic Mode" ? PlayerStats.PlayerMode.Classic : PlayerStats.PlayerMode.Roguelike;
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown((int) MouseButton.Left))
         {
-            if (currentState != PlayerState.Dead && currentState == PlayerState.Idle)
+            if (currentState != PlayerStats.PlayerState.Dead && currentState == PlayerStats.PlayerState.Idle)
             {
                 Instantiate(laserBean, firePoint.position, firePoint.rotation);
                 AudioManager.audioManagerInstance.PlayLaserShoot();
@@ -52,7 +39,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (currentMode == PlayerMode.Roguelike)
+        if (currentMode == PlayerStats.PlayerMode.Roguelike)
         {
             float moveX = Input.GetAxis("Horizontal");
             float moveY = Input.GetAxis("Vertical");
@@ -75,7 +62,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Die()
     {
-        currentState = PlayerState.Dead;
+        currentState = PlayerStats.PlayerState.Dead;
         gameManager.ShowResults();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
@@ -92,10 +79,10 @@ public class PlayerControl : MonoBehaviour
 
     private IEnumerator ControlFireRate()
     {
-        currentState = PlayerState.Shooting;
+        currentState = PlayerStats.PlayerState.Shooting;
         float finalFireRate = playerStats.baseFireRate - reducedFireRate;
         yield return new WaitForSeconds(finalFireRate);
-        currentState = PlayerState.Idle;
+        currentState = PlayerStats.PlayerState.Idle;
     }
 
     public void ReduceFireRate(float value)

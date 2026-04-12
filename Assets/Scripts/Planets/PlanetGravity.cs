@@ -9,8 +9,6 @@ public class PlanetGravity : MonoBehaviour
     void Start()
     {
         gravityArea = GetComponent<CapsuleCollider2D>();
-
-        gravityStrength = gravityArea.size.x * Random.Range(2, 3);
     }
 
     void FixedUpdate()
@@ -24,5 +22,11 @@ public class PlanetGravity : MonoBehaviour
                 collider.GetComponent<Rigidbody2D>().AddForce(direction.normalized * gravityStrength);
             }
         }
+    }
+
+    public void SetGravityProperties(float strength, float size)
+    {
+        gravityArea.size = new Vector2(size, size);
+        gravityStrength = strength;
     }
 }

@@ -22,21 +22,22 @@ public class PlanetData : MonoBehaviour
         Random.State prev = Random.state;
         Random.InitState(seed);
 
-        // Random sprite
+        // Random values for each planet
         spriteRenderer.sprite = planetSprites[Random.Range(0, planetSprites.Length)];
-        // Random color tint
         spriteRenderer.color = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.95f, 1f);
-        // Random scale
         float scale = Random.Range(minScale, maxScale);
         transform.localScale = Vector3.one * scale;
 
-        //Ajust light intensity based on scale
-        planetLight.color = spriteRenderer.color * 1.2f; // Light color is a brighter version of the sprite color
+        //Ajust light based on scale
+        planetLight.color = spriteRenderer.color * 1.2f;
         planetLight.intensity = Mathf.Lerp(0.5f, 2f, (scale - minScale) / (maxScale - minScale));
-        planetLight.pointLightOuterRadius = scale * 2f; // Light radius scales with planet size
+        planetLight.pointLightOuterRadius = scale * 2f;
         planetLight.pointLightInnerRadius = scale;
 
-        // Maybe change gravity here based on scale or type, if needed
+        //Ajust gravity based on scale
+        PlanetGravity gravity = GetComponent<PlanetGravity>();
+        float strength = Mathf.Lerp(0.5f, 2f, (scale - minScale) / (maxScale - minScale));
+        gravity.SetGravityProperties(strength, scale * 2f);
 
         Random.state = prev;
     }

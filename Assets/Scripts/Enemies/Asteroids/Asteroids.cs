@@ -15,7 +15,9 @@ public class Asteroids : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D boxCollider;
     private Color damageColor;
-    private float health = 10f;
+
+    private float health;
+    private float damageAmount;
     private bool isDead = false;
 
     private int scoreValue = 10; //For classic mode
@@ -31,14 +33,22 @@ public class Asteroids : MonoBehaviour
 
         float randomScale = Random.Range(minScale, maxScale);
         transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+
+        //Set health and damage based on scale
+        health = randomScale * 10f;
+        damageAmount = randomScale * 5f;
+
+        if (GameManager.Instance.GetCurrentScene() == "Classic Mode")
+            damageAmount = 9999f; //Instant death in classic mode
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerControl>().Die();
-            Destroy(gameObject);
+            collision.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
+
+            StartCoroutine(Die());
         }
     }
 
@@ -60,10 +70,10 @@ public class Asteroids : MonoBehaviour
         {
             isDead = true;
 
-            if (RoguelikeGameManager.Instance.GetCurrentScene() == "Classic Mode")
+            if (GameManager.Instance.GetCurrentScene() == "Classic Mode")
                 ScoreManager.scoreManagerInstance.AddScore(scoreValue);
 
-            if (RoguelikeGameManager.Instance.GetCurrentScene() == "Roguelike Mode")
+            if (GameManager.Instance.GetCurrentScene() == "Roguelike Mode")
             {
                 GiveExpToPlayer exp = GetComponent<GiveExpToPlayer>();
                 exp.GiveExp();
