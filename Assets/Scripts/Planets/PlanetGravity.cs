@@ -4,7 +4,7 @@ using static UnityEngine.GraphicsBuffer;
 public class PlanetGravity : MonoBehaviour
 {
     private CapsuleCollider2D gravityArea;
-    private float gravityStrength = 10f;
+    public float gravityStrength = 10f;
 
     void Start()
     {
@@ -19,14 +19,16 @@ public class PlanetGravity : MonoBehaviour
             if (collider.CompareTag("Player"))
             {
                 Vector2 direction = transform.position - collider.transform.position;
+                float distance = direction.magnitude;
+
                 collider.GetComponent<Rigidbody2D>().AddForce(direction.normalized * gravityStrength);
             }
         }
     }
 
-    public void SetGravityProperties(float strength, float size)
+    public void SetGravityProperties(float scale)
     {
-        gravityArea.size = new Vector2(size, size);
-        gravityStrength = strength;
+        gravityArea.size = new Vector2(scale * 5f, scale * 5f);
+        gravityStrength = scale * scale * 10f;                 
     }
 }

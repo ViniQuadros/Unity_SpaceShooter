@@ -30,6 +30,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Shield shield = GetComponentInChildren<Shield>();
+        if (shield != null && shield.IsShieldActive())
+        {
+            shield.LoseShield();
+            return;
+        }
+
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, playerStats.baseMaxHealth + bonusMaxHealth); // Ensure health doesn't go below 0
         healthSlider.value = currentHealth;

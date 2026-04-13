@@ -34,10 +34,8 @@ public class PlanetData : MonoBehaviour
         planetLight.pointLightOuterRadius = scale * 2f;
         planetLight.pointLightInnerRadius = scale;
 
-        //Ajust gravity based on scale
         PlanetGravity gravity = GetComponent<PlanetGravity>();
-        float strength = Mathf.Lerp(0.5f, 2f, (scale - minScale) / (maxScale - minScale));
-        gravity.SetGravityProperties(strength, scale * 2f);
+        gravity.SetGravityProperties(scale);
 
         Random.state = prev;
     }

@@ -13,11 +13,6 @@ public class UpgradesManager : MonoBehaviour
     public Button[] upgradeButtons;
     public TextMeshProUGUI[] upgradeTexts;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         // For testing purposes, show upgrades when player presses U
