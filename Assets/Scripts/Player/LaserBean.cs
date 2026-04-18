@@ -5,26 +5,21 @@ public class LaserBean : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PlayerControl playerControl;
-
-    public PlayerStats playerStats;
-
-    private float bonusDamage = 0f;
-    private float bonusSpeed = 0f;
-    private float bonusCritChance = 0f;
-    private float bonusCritDamage = 0f;
+    private PlayerStats playerStats;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
+        playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
 
-        rb.AddForce(transform.up * (playerStats.baseProjectileSpeed + bonusSpeed), ForceMode2D.Impulse);
+        rb.AddForce(transform.up * playerStats.TotalProjectileSpeed, ForceMode2D.Impulse);
         Invoke(nameof(DestroyBean), 5f);
     }
 
     void Update()
     {
-        Debug.Log($"Damage: {playerStats.baseDamage + bonusDamage}, Speed: {playerStats.baseProjectileSpeed + bonusSpeed}, Crit Chance: {playerStats.baseCritChance + bonusCritChance}%, Crit Damage: {playerStats.baseCritDamage + bonusCritDamage}");
+        Debug.Log($"Damage: {playerStats.TotalDamage}, Speed: {playerStats.TotalProjectileSpeed}, Crit Chance: {playerStats.TotalCritChance}%, Crit Damage: {playerStats.TotalCritDamage}");
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -44,14 +39,14 @@ public class LaserBean : MonoBehaviour
         if (other.CompareTag("Asteroid"))
         {
             float rand = Random.Range(0f, 100f);
-            if (rand <= playerStats.baseCritChance + bonusCritChance)
+            if (rand <= playerStats.TotalCritChance)
             {
-                float totalCritDamage = playerStats.baseCritDamage + bonusCritDamage;
+                float totalCritDamage = playerStats.TotalCritDamage;
                 other.GetComponent<Asteroids>().TakeDamage(totalCritDamage, true);
             }
             else
             {
-                float totalDamage = playerStats.baseDamage + bonusDamage;
+                float totalDamage = playerStats.TotalDamage;
                 other.GetComponent<Asteroids>().TakeDamage(totalDamage, false);
             }
             DestroyBean();
@@ -62,9 +57,4 @@ public class LaserBean : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    public void SetBonusDamage(float value) => bonusDamage = Mathf.Max(0f, value);
-    public void SetBonusSpeed(float value) => bonusSpeed = Mathf.Max(0f, value);
-    public void SetBonusCritChance(float value) => bonusCritChance = Mathf.Clamp(value, 0f, 100f);
-    public void SetBonusCritDamage(float value) => bonusCritDamage = Mathf.Max(0f, value);
 }

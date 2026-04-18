@@ -5,7 +5,7 @@ public class ShieldUpgrade : UpgradesSO
 {
     public GameObject shield;
 
-    public override void ApplyEffect()
+    public override void ApplyEffect(PlayerStats playerStats)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Instantiate(shield, player.transform);

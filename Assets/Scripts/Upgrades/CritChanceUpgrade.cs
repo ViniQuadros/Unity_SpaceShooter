@@ -3,11 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades/Crit Chance Upgrade")]
 public class CritChanceUpgrade : UpgradesSO
 {
-    public GameObject laserBean;
-    public override void ApplyEffect()
+    public override void ApplyEffect(PlayerStats playerStats)
     {
-        laserBean.GetComponent<LaserBean>().SetBonusCritChance(modifierValue);
-        modifierValue += 1f;
+        playerStats.bonusCritChance += modifierValue;
         ResumeGame();
     }
 

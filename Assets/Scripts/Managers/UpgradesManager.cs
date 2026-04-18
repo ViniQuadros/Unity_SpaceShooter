@@ -13,6 +13,14 @@ public class UpgradesManager : MonoBehaviour
     public Button[] upgradeButtons;
     public TextMeshProUGUI[] upgradeTexts;
 
+    private PlayerStats playerStats;
+
+    void Start()
+    {
+        playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
+        upgradeCanvas.SetActive(false);
+    }
+
     void Update()
     {
         // For testing purposes, show upgrades when player presses U
@@ -32,7 +40,7 @@ public class UpgradesManager : MonoBehaviour
             upgradeTexts[i].text = selected[i].GetDescription();
 
             upgradeButtons[i].onClick.RemoveAllListeners(); // Avoid stacking listeners
-            upgradeButtons[i].onClick.AddListener(() => selected[local].ApplyEffect());
+            upgradeButtons[i].onClick.AddListener(() => selected[local].ApplyEffect(playerStats));
         }
 
         upgradeCanvas.SetActive(true);

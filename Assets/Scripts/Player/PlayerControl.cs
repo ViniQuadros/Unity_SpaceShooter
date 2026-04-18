@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public PlayerStats playerStats;
-
     [Header("Laser Settings")]
     public GameObject laserBean;
     public Transform firePoint;
@@ -13,25 +11,25 @@ public class PlayerControl : MonoBehaviour
     private GameManager gameManager;
     private string currentScene;
 
+    private PlayerStats playerStats;
     private bool isInstaKillActive = false;
-    private float bonusMovementSpeed = 0f;
     private float reducedFireRate = 0f;
-
-    private PlayerStats.PlayerMode currentMode;
-    private PlayerStats.PlayerState currentState = PlayerStats.PlayerState.Idle;
 
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        playerStats = GetComponent<PlayerStats>();
+
         currentScene = gameManager.GetCurrentScene();
-        currentMode = currentScene == "Classic Mode" ? PlayerStats.PlayerMode.Classic : PlayerStats.PlayerMode.Roguelike;
+
+        playerStats.currentMode = currentScene == "Classic Mode" ? PlayerStats.PlayerMode.Classic : PlayerStats.PlayerMode.Roguelike;
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown((int) MouseButton.Left))
         {
-            if (currentState != PlayerStats.PlayerState.Dead && currentState == PlayerStats.PlayerState.Idle)
+            if (playerStats.state != PlayerStats.PlayerState.Dead && playerStats.state == PlayerStats.PlayerState.Idle)
             {
                 Instantiate(laserBean, firePoint.position, firePoint.rotation);
                 AudioManager.audioManagerInstance.PlayLaserShoot();
@@ -39,13 +37,12 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (currentMode == PlayerStats.PlayerMode.Roguelike)
+        if (playerStats.currentMode == PlayerStats.PlayerMode.Roguelike)
         {
             float moveX = Input.GetAxis("Horizontal");
             float moveY = Input.GetAxis("Vertical");
 
-            float finalMovementSpeed = playerStats.baseMovementSpeed + bonusMovementSpeed;
-            Vector3 move = new Vector3(moveX, moveY, 0f) * finalMovementSpeed * Time.deltaTime;
+            Vector3 move = new Vector3(moveX, moveY, 0f) * playerStats.TotalMovementSpeed * Time.deltaTime;
 
             transform.Translate(move);
         }
@@ -62,7 +59,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Die()
     {
-        currentState = PlayerStats.PlayerState.Dead;
+        playerStats.state = PlayerStats.PlayerState.Dead;
         gameManager.ShowResults();
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
@@ -79,10 +76,10 @@ public class PlayerControl : MonoBehaviour
 
     private IEnumerator ControlFireRate()
     {
-        currentState = PlayerStats.PlayerState.Shooting;
+        playerStats.state = PlayerStats.PlayerState.Shooting;
         float finalFireRate = playerStats.baseFireRate - reducedFireRate;
         yield return new WaitForSeconds(finalFireRate);
-        currentState = PlayerStats.PlayerState.Idle;
+        playerStats.state = PlayerStats.PlayerState.Idle;
     }
 
     public void ReduceFireRate(float value)

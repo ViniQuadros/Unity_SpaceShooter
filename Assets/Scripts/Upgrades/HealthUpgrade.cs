@@ -3,11 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades/Health Upgrade")]
 public class HealthUpgrade : UpgradesSO
 {
-    public override void ApplyEffect()
+    public override void ApplyEffect(PlayerStats playerStats)
     {
         PlayerHealth playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         playerHealth.IncreaseMaxHealth(modifierValue);
-        modifierValue += 0.1f;
         ResumeGame();
     }
 

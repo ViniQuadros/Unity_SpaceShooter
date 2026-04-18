@@ -10,13 +10,15 @@ public class PlayerExperience : MonoBehaviour
     public Slider expSlider;
     public TextMeshProUGUI playerLevel;
 
+    private PlayerStats playerStats;
     private float currentExp = 0;
     private float expToNextLevel = 200;
-    private float expMultiplier = 1f;
     private int currentPlayerLevel = 1;
 
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
+
         expSlider.value = currentExp;
         expSlider.maxValue = expToNextLevel;
         playerLevel.text = currentPlayerLevel.ToString();
@@ -24,7 +26,7 @@ public class PlayerExperience : MonoBehaviour
 
     public void AddExperience(float amount)
     {
-        currentExp += (amount * expMultiplier);
+        currentExp += (amount * playerStats.bonusExpMultiplier);
         expSlider.value = currentExp;
         if (currentExp >= expToNextLevel)
         {
@@ -41,10 +43,5 @@ public class PlayerExperience : MonoBehaviour
         expSlider.value = currentExp;
 
         upgradesManager.ShowPossibleUpgrades();
-    }
-
-    public void IncreaseExpMultiplier(float multiplier)
-    {
-        expMultiplier += multiplier;
     }
 }

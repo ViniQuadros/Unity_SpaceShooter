@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "UpgradesSO", menuName = "Scriptable Objects/UpgradesSO")]
 public abstract class UpgradesSO : ScriptableObject
 {
     public float modifierValue;
+    protected PlayerStats playerStats;
 
-    public abstract void ApplyEffect();
+    public abstract void ApplyEffect(PlayerStats playerStats);
     public abstract string GetDescription();
 
     public void ResumeGame()

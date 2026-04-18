@@ -6,17 +6,16 @@ using FirstGearGames.SmoothCameraShaker;
 public class PlayerHealth : MonoBehaviour
 {
     public Slider healthSlider;
-    public PlayerStats playerStats;
 
     private float currentHealth;
-    private float bonusMaxHealth = 0;
 
+    private PlayerStats playerStats;
     private SpriteRenderer spriteRenderer;
-
     public ShakeData damageShake;
 
     private void Awake()
     {
+        playerStats = GetComponent<PlayerStats>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         // Initialize health slider value to 100% at the start
@@ -38,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, playerStats.baseMaxHealth + bonusMaxHealth); // Ensure health doesn't go below 0
+        currentHealth = Mathf.Clamp(currentHealth, 0, playerStats.TotalMaxHealth); // Ensure health doesn't go below 0
         healthSlider.value = currentHealth;
 
         if (currentHealth <= 0)
@@ -55,15 +54,15 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, playerStats.baseMaxHealth + bonusMaxHealth); // Ensure health doesn't exceed max
+        currentHealth = Mathf.Clamp(currentHealth, 0, playerStats.TotalMaxHealth); // Ensure health doesn't exceed max
         healthSlider.value = currentHealth;
     }
 
     public void IncreaseMaxHealth(float modifier)
     {
-        float totalMaxHealth = playerStats.baseMaxHealth + bonusMaxHealth;
-        bonusMaxHealth += (totalMaxHealth * modifier);
-        healthSlider.maxValue = playerStats.baseMaxHealth + bonusMaxHealth;
+        float totalMaxHealth = playerStats.TotalMaxHealth;
+        playerStats.bonusMaxHealth += (totalMaxHealth * modifier);
+        healthSlider.maxValue = playerStats.TotalMaxHealth;
         healthSlider.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, totalMaxHealth); // Adjust the width of the health bar based on the new max health
     }
 

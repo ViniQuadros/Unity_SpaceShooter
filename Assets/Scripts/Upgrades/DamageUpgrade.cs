@@ -3,12 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades/Damage Upgrade")]
 public class DamageUpgrade : UpgradesSO
 {
-    public GameObject laserBean;
-
-    public override void ApplyEffect()
+    public override void ApplyEffect(PlayerStats playerStats)
     {
-        laserBean.GetComponent<LaserBean>().SetBonusDamage(modifierValue);
-        modifierValue += 2f;
+        playerStats.bonusDamage += modifierValue;
         ResumeGame();
     }
 

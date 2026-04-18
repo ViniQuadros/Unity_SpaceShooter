@@ -3,11 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Upgrades/Crit Damage Upgrade")]
 public class CritDamageUpgrade : UpgradesSO
 {
-    public GameObject laserBean;
-    public override void ApplyEffect()
+    public override void ApplyEffect(PlayerStats playerStats)
     {
-        laserBean.GetComponent<LaserBean>().SetBonusCritDamage(modifierValue);
-        modifierValue += 5f;
+        playerStats.bonusCritDamage += modifierValue;
         ResumeGame();
     }
 
