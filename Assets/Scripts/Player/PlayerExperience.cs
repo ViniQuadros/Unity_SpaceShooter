@@ -44,4 +44,9 @@ public class PlayerExperience : MonoBehaviour
 
         upgradesManager.ShowPossibleUpgrades();
     }
+
+    public int GetCurrentPlayerLevel()
+    {
+        return currentPlayerLevel;
+    }
 }

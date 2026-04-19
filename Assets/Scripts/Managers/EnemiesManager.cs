@@ -1,11 +1,16 @@
 using UnityEngine;
 
-public class AsteroidsManager : MonoBehaviour
+public class EnemiesManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] asteroidPrefab;
+    [SerializeField] private GameObject[] enemiesPrefab;
     [SerializeField] private Transform[] spawnPoints;
     public PlayerControl playerControl;
+    public PlayerExperience playerExperience;
+
     private float maxSpawnTime = 3f;
+    private int arrayLength = 2;
+
+    private bool insertNewEnemyType = false;
 
     void Start()
     {
@@ -22,13 +27,19 @@ public class AsteroidsManager : MonoBehaviour
         float marginAngle = Random.Range(-20f, 20f) + 90f;
         Quaternion rotation = Quaternion.Euler(0f, 0f, angle - marginAngle);
 
+        if (playerExperience.GetCurrentPlayerLevel() == 3 && !insertNewEnemyType)
+        {
+            arrayLength = enemiesPrefab.Length;
+            insertNewEnemyType = true;
+        }
+
         Instantiate(
-            asteroidPrefab[Random.Range(0, asteroidPrefab.Length)],
+            enemiesPrefab[Random.Range(0, arrayLength)],
             spawnPoint.position,
             rotation
         );
 
-        //Decrease spawn time every 50 points to increase difficulty
+        //Decrease spawn time every 50 points to increase difficulty if in Classic mode
         if (ScoreManager.scoreManagerInstance != null)
         {
             if (ScoreManager.scoreManagerInstance.GetScore() % 50 == 0 && maxSpawnTime > 1f)

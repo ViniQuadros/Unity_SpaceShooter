@@ -10,6 +10,7 @@ TagManager:
   - PowerUpManager
   - GameManager
   - UpgradesManager
+  - Enemy
   layers:
   - Default
   - TransparentFX

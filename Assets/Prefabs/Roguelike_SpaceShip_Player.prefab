@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 450553951418966698}
   m_Layer: 0
-  m_Name: SpawnPoint1
+  m_Name: AsteroidSpawnPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &450553951418966698
 Transform:
   m_ObjectHideFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 694269850318567989}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.48, y: 4.18, z: 0}
+  m_LocalPosition: {x: 7, y: 4, z: 0}
   m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -145,6 +145,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &2865587641973791355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8735326034430089929}
+  m_Layer: 0
+  m_Name: AsteroidSpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8735326034430089929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2865587641973791355}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7, y: -4, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8988794054547917941}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2973019375343386407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,6 +252,9 @@ PrefabInstance:
       addedObject: {fileID: 450553951418966698}
     - targetCorrespondingSourceObject: {fileID: 6196062275171447634, guid: 13f7d18a83603b546a155ab9f23154de, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8735326034430089929}
+    - targetCorrespondingSourceObject: {fileID: 6196062275171447634, guid: 13f7d18a83603b546a155ab9f23154de, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 115984523669131620}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4916028172320508067, guid: 13f7d18a83603b546a155ab9f23154de, type: 3}
@@ -232,6 +266,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4916028172320508067, guid: 13f7d18a83603b546a155ab9f23154de, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4527456395049760739}
+    - targetCorrespondingSourceObject: {fileID: 4916028172320508067, guid: 13f7d18a83603b546a155ab9f23154de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6859203707971838137}
   m_SourcePrefab: {fileID: 100100000, guid: 13f7d18a83603b546a155ab9f23154de, type: 3}
 --- !u!1 &7889027597517469572 stripped
 GameObject:
@@ -253,7 +290,7 @@ MonoBehaviour:
   boostSlider: {fileID: 0}
   fillImage: {fileID: 0}
   boostForce: 5
-  boostSprite: {fileID: 0}
+  boostSprite: {fileID: 6292471683354207924}
 --- !u!114 &2996694297389169813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   healthSlider: {fileID: 0}
-  playerStats: {fileID: 11400000, guid: f69a57ecb9536b24d8871e83e3a643f3, type: 2}
+  damageShake: {fileID: 11400000, guid: 213ad24668eb8e54883f6471a5fbc3ce, type: 2}
 --- !u!114 &4527456395049760739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,9 +317,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96581962a4641b64197ca0dfade2d888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradesManager: {fileID: 0}
   expSlider: {fileID: 0}
   playerLevel: {fileID: 0}
-  upgradeCanvas: {fileID: 0}
+--- !u!114 &6859203707971838137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889027597517469572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e9e835626c2e64f80d6ba9f904ff38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  baseMovementSpeed: 5
+  baseMaxHealth: 100
+  baseFireRate: 0.5
+  baseProjectileSpeed: 20
+  baseDamage: 5
+  baseCritDamage: 20
+  baseCritChance: 0.1
+  bonusMaxHealth: 0
+  bonusMovementSpeed: 0
+  bonusFireRate: 0
+  bonusProjectileSpeed: 0
+  bonusDamage: 0
+  bonusCritDamage: 0
+  bonusCritChance: 0
+  bonusExpMultiplier: 1
+  currentMode: 0
+  state: 0
 --- !u!4 &8988794054547917941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6196062275171447634, guid: 13f7d18a83603b546a155ab9f23154de, type: 3}

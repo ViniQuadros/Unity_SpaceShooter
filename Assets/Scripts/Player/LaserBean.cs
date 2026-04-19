@@ -17,11 +17,6 @@ public class LaserBean : MonoBehaviour
         Invoke(nameof(DestroyBean), 5f);
     }
 
-    void Update()
-    {
-        Debug.Log($"Damage: {playerStats.TotalDamage}, Speed: {playerStats.TotalProjectileSpeed}, Crit Chance: {playerStats.TotalCritChance}%, Crit Damage: {playerStats.TotalCritDamage}");
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (playerControl.IsInstaKillActive())
@@ -36,18 +31,18 @@ public class LaserBean : MonoBehaviour
             DestroyBean();
         }
 
-        if (other.CompareTag("Asteroid"))
+        if (other.CompareTag("Asteroid") || other.CompareTag("Enemy"))
         {
             float rand = Random.Range(0f, 100f);
             if (rand <= playerStats.TotalCritChance)
             {
                 float totalCritDamage = playerStats.TotalCritDamage;
-                other.GetComponent<Asteroids>().TakeDamage(totalCritDamage, true);
+                other.GetComponent<EnemyClass>().TakeDamage(totalCritDamage, true);
             }
             else
             {
                 float totalDamage = playerStats.TotalDamage;
-                other.GetComponent<Asteroids>().TakeDamage(totalDamage, false);
+                other.GetComponent<EnemyClass>().TakeDamage(totalDamage, false);
             }
             DestroyBean();
         }

@@ -1394,30 +1394,14 @@ PrefabInstance:
       propertyPath: boostSlider
       value: 
       objectReference: {fileID: 1728694131}
-    - target: {fileID: -1288989694091765774, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-      propertyPath: boostSprite
-      value: 
-      objectReference: {fileID: 1895141869}
-    - target: {fileID: 94820247157805643, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-      propertyPath: m_Color.b
-      value: 1
+    - target: {fileID: 450553951418966698, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 94820247157805643, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-      propertyPath: m_Color.g
-      value: 1
+    - target: {fileID: 450553951418966698, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 94820247157805643, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 694269850318567989, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-      propertyPath: m_Name
-      value: AsteroidSpawnPoint1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2996694297389169813, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-      propertyPath: damageShake
-      value: 
-      objectReference: {fileID: 11400000, guid: 213ad24668eb8e54883f6471a5fbc3ce, type: 2}
     - target: {fileID: 2996694297389169813, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
       propertyPath: healthSlider
       value: 
@@ -1431,16 +1415,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1466431376}
     - target: {fileID: 4527456395049760739, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-      propertyPath: upgradeCanvas
-      value: 
-      objectReference: {fileID: 1694342797}
-    - target: {fileID: 4527456395049760739, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
       propertyPath: upgradesManager
       value: 
       objectReference: {fileID: 1141364972}
     - target: {fileID: 7889027597517469572, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
       propertyPath: m_Name
       value: Roguelike_SpaceShip_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735326034430089929, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735326034430089929, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 8988794054547917941, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1485,10 +1473,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7889027597517469572, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1156055294}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
 --- !u!1 &771137534
 GameObject:
@@ -1665,7 +1650,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2051,7 +2036,7 @@ GameObject:
   - component: {fileID: 1100896283}
   - component: {fileID: 1100896282}
   m_Layer: 0
-  m_Name: AsteroidSpawner
+  m_Name: EnemiesSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2069,12 +2054,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa4ddb136ad7724c99eaca4c2933308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidsManager
-  asteroidPrefab:
+  enemiesPrefab:
   - {fileID: 2998106928445778108, guid: 134657c095e000f43b8b0d7a341a95b5, type: 3}
   - {fileID: 6050703025595331091, guid: f1cea015a5853ef47bc321dac49bde5f, type: 3}
+  - {fileID: 2752228040016105963, guid: 43994cd0cfbb40e469e34e300a0a4ce3, type: 3}
   spawnPoints:
   - {fileID: 1539443134}
+  - {fileID: 1336461772}
   playerControl: {fileID: 1156055293}
+  playerExperience: {fileID: 1156055295}
 --- !u!4 &1100896283
 Transform:
   m_ObjectHideFlags: 0
@@ -2090,11 +2078,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1468265176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1121976966 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7889027597517469572, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-  m_PrefabInstance: {fileID: 566077168}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1141364970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2129,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 88c8c7ff050aaa94aa072f3bb19c8ddc, type: 2}
   - {fileID: 11400000, guid: a33f43b86481c9b48b4ace38ae2954b2, type: 2}
   - {fileID: 11400000, guid: 7cae98129f683a14dab7b2e0eb5a81f8, type: 2}
+  - {fileID: 11400000, guid: e9441bdc7f3446641b294297cbe29b59, type: 2}
   upgradeCanvas: {fileID: 1694342797}
   upgradeButtons:
   - {fileID: 510023216}
@@ -2249,41 +2233,23 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4069134251796190069, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
   m_PrefabInstance: {fileID: 566077168}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121976966}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 127d3efade2af8c4abc34e10e024cbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!114 &1156055294
+--- !u!114 &1156055295 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4527456395049760739, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
+  m_PrefabInstance: {fileID: 566077168}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121976966}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0e9e835626c2e64f80d6ba9f904ff38, type: 3}
+  m_Script: {fileID: 11500000, guid: 96581962a4641b64197ca0dfade2d888, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  baseMovementSpeed: 5
-  baseMaxHealth: 100
-  baseFireRate: 0.5
-  baseProjectileSpeed: 20
-  baseDamage: 5
-  baseCritDamage: 20
-  baseCritChance: 0.1
-  bonusMaxHealth: 0
-  bonusMovementSpeed: 0
-  bonusFireRate: 0
-  bonusProjectileSpeed: 0
-  bonusDamage: 0
-  bonusCritDamage: 0
-  bonusCritChance: 0
-  bonusExpMultiplier: 1
-  currentMode: 0
-  state: 0
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1175568225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,6 +2503,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282663837}
   m_CullTransparentMesh: 1
+--- !u!4 &1336461772 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8735326034430089929, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
+  m_PrefabInstance: {fileID: 566077168}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1394532718
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,11 +3418,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858758066}
   m_CullTransparentMesh: 1
---- !u!212 &1895141869 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6292471683354207924, guid: 52b90be44b9ce27479e3c99a7a47362a, type: 3}
-  m_PrefabInstance: {fileID: 566077168}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2062271877
 GameObject:
   m_ObjectHideFlags: 0

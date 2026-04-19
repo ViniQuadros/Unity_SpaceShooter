@@ -1,31 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class Asteroids : MonoBehaviour
+public class Asteroids : EnemyClass
 {
     [Header("Speed Config")]
     public float minSpeed = 1.0f;
     public float maxSpeed = 4.0f;
 
     [Header("Scale Config")]
-    public float minScale = 0.6f;
-    public float maxScale = 1.5f;
+    public float minScale = 0.5f;
+    public float maxScale = 2.5f;
 
-    private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
-    private Collider2D boxCollider;
-    private Color damageColor;
+    private float damage;
 
-    private float health;
-    private float damageAmount;
-    private bool isDead = false;
-
-    private int scoreValue = 10; //For classic mode
-
-    void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        base.Start();
 
         //Apply random speed and scale to the asteroid
         float speed = Random.Range(minSpeed, maxSpeed + 1);
@@ -35,70 +25,20 @@ public class Asteroids : MonoBehaviour
         transform.localScale = new Vector3(randomScale, randomScale, randomScale);
 
         //Set health and damage based on scale
-        health = randomScale * 10f;
-        damageAmount = randomScale * 5f;
+        maxHealth = randomScale * 10f;
+        currentHealth = maxHealth;
+        damage = randomScale * 5f;
 
         if (GameManager.Instance.GetCurrentScene() == "Classic Mode")
-            damageAmount = 9999f; //Instant death in classic mode
+            damage = 9999f; //Instant death in classic mode
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
-
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
             StartCoroutine(Die());
         }
-    }
-
-    public void TakeDamage(float damage, bool isCriticalDamage)
-    {
-        if (isDead)
-            return;
-
-        health -= damage;
-
-        if (isCriticalDamage)
-            damageColor = Color.darkViolet;
-        else
-            damageColor = Color.red;
-
-        StartCoroutine(FlashRed());
-
-        if (health <= 0f)
-        {
-            isDead = true;
-
-            if (GameManager.Instance.GetCurrentScene() == "Classic Mode")
-                ScoreManager.scoreManagerInstance.AddScore(scoreValue);
-
-            if (GameManager.Instance.GetCurrentScene() == "Roguelike Mode")
-            {
-                GiveExpToPlayer exp = GetComponent<GiveExpToPlayer>();
-                exp.GiveExp();
-            }
-            
-            StartCoroutine(Die());
-        }
-    }
-
-    private IEnumerator FlashRed()
-    {
-        Color originalColor = spriteRenderer.color;
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        spriteRenderer.color = originalColor;
-    }
-
-    private IEnumerator Die()
-    {
-        AudioManager.audioManagerInstance.PlayAsteroidExplosion();
-        spriteRenderer.enabled = false;
-        boxCollider = GetComponent<Collider2D>();
-        boxCollider.enabled = false;
-        rb.linearVelocity = Vector2.zero;
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
     }
 }
