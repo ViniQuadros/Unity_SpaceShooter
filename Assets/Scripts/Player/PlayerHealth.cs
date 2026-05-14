@@ -38,7 +38,11 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, playerStats.TotalMaxHealth); // Ensure health doesn't go below 0
-        healthSlider.value = currentHealth;
+
+        if (healthSlider != null)
+        {
+            healthSlider.value = currentHealth;
+        }
 
         if (currentHealth <= 0)
         {

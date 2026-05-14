@@ -27,10 +27,13 @@ public class EnemiesManager : MonoBehaviour
         float marginAngle = Random.Range(-20f, 20f) + 90f;
         Quaternion rotation = Quaternion.Euler(0f, 0f, angle - marginAngle);
 
-        if (playerExperience.GetCurrentPlayerLevel() == 3 && !insertNewEnemyType)
+        if (GameManager.Instance.GetCurrentScene() == "Roguelike Mode")
         {
-            arrayLength = enemiesPrefab.Length;
-            insertNewEnemyType = true;
+            if (playerExperience.GetCurrentPlayerLevel() == 3 && !insertNewEnemyType)
+            {
+                arrayLength = enemiesPrefab.Length;
+                insertNewEnemyType = true;
+            }
         }
 
         Instantiate(

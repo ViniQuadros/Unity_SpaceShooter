@@ -13,4 +13,9 @@ public class ClassicGameManager : GameManager
         finalScore.text = "Your Score: " + ScoreManager.scoreManagerInstance.GetScore().ToString();
         Time.timeScale = 0f;
     }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }
